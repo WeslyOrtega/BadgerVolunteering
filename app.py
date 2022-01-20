@@ -9,7 +9,7 @@ CORS(app)
 @cross_origin()
 def index():
     return {
-        "msg": "Comming Soon"
+        "msg": "Coming Soon"
     }
 
 @app.route('/')
