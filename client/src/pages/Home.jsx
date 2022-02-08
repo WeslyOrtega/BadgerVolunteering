@@ -5,44 +5,56 @@ import img2 from "../assets/pexels2.jpg";
 
 function Home() {
   const [data] = useState({
-    _id: "1",
-    data1: {
-      _id: "snoopy",
+    id: "1",
+    option1: {
+      id: "snoopy",
       text: "Date me",
       img: img1,
+      alt: "happy office employee",
+      colorPrimary: "bg-red-100",
+      colorSecondary: "bg-red-200",
     },
-    data2: {
-      _id: "poopy",
+    option2: {
+      id: "poopy",
       text: "hate me",
       img: img2,
+      alt: "happy people planting trees",
+      colorPrimary: "bg-green-100",
+      colorSecondary: "bg-green-200",
     },
   });
 
   const [resp, setResp] = useState({
-    _id: "",
+    id: "",
     choiceId: "",
     token: null,
   });
 
-  const onClick = () => {};
+  const onClick = (e) => {
+    setResp({
+      id: data.id,
+      choiceId: e.target.id,
+      token: "tbd",
+    });
 
-  const { data1, data2 } = data;
+    //this is where we will dispatch result to API endpoint and update state
+  };
+
+  const { option1, option2 } = data;
   return (
-    <div className="pt-10 pb-10">
-      <div className="grid grid-cols-2 gap-5 ">
-        <div className="bg-red-100 rounded-lg">
-          <div className="bg-red-200 m-2 p-2 translate-y-2 translate-x-2 rounded-lg">
-            <UserChoice data={data1} onClick={onClick} />
-          </div>
+    <div className="pt-10 pb-10 ">
+      <div className="grid grid-cols-2 gap-10 ">
+        <div className={`${option1.colorPrimary} rounded-lg`}>
+          <UserChoice data={option1} click={onClick} position="" />
         </div>
-        <div className="bg-red-100 rounded-xl">
-          <div className="bg-red-200 m-2 p-2 translate-y-2 translate-x-2 rounded-lg">
-            <UserChoice data={data2} onClick={onClick} />
-          </div>
+        <div className={`${option2.colorPrimary} rounded-lg`}>
+          <UserChoice data={option2} click={onClick} position="-" />
         </div>
       </div>
-      <div className="bg-red-100 rounded-xl p-5 mt-5">
-        <button onClick={onClick}>UNDECIDED</button>
+      <div className="flex items-center  justify-center  text-4xl bg-slate-100 rounded-xl p-5 mt-5 active:translate-y-1 drop-shadow-md">
+        <button id="undecided" onClick={onClick}>
+          UNDECIDED
+        </button>
       </div>
     </div>
   );
