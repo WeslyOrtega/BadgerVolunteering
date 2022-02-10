@@ -1,5 +1,3 @@
-from cgitb import reset
-from urllib import response
 from flask import Flask
 from flask.helpers import send_from_directory
 from flask_cors import CORS, cross_origin
