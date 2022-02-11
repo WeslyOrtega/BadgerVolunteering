@@ -1,11 +1,14 @@
 import React from "react";
 
-function UserChoice({ data, click, position }) {
+function UserChoice({ data, onClick, position }) {
   const { img, text, id, alt, colorPrimary, colorSecondary } = data;
 
   return (
     <>
-      <button onClick={click} className={`active:${position}translate-x-1`}>
+      <button
+        onClick={() => onClick(id)}
+        className={`active:${position}translate-x-1`}
+      >
         <div
           className={`${colorSecondary} m-2 p-2 translate-y-2 translate-x-3 rounded-lg drop-shadow-md`}
         >

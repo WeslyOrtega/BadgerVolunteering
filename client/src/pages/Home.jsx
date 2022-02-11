@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import UserChoice from "../components/UserChoice";
 import img1 from "../assets/pexels.jpg";
 import img2 from "../assets/pexels2.jpg";
@@ -24,16 +24,12 @@ function Home() {
     },
   });
 
-  const [resp, setResp] = useState({
-    id: "",
-    choiceId: "",
-    token: null,
-  });
+  const [resp, setResp] = useState(null);
 
   const onClick = (e) => {
     setResp({
       id: data.id,
-      choiceId: e.target.id,
+      choiceId: e,
       token: "tbd",
     });
 
@@ -41,18 +37,22 @@ function Home() {
   };
 
   const { option1, option2 } = data;
+  useEffect(()=>{
+    if( resp !== null)
+    console.log(resp)
+  },[resp])
   return (
     <div className="pt-10 pb-10 ">
       <div className="grid grid-cols-2 gap-10 ">
         <div className={`${option1.colorPrimary} rounded-lg`}>
-          <UserChoice data={option1} click={onClick} position="" />
+          <UserChoice data={option1} onClick={onClick} position="" />
         </div>
         <div className={`${option2.colorPrimary} rounded-lg`}>
-          <UserChoice data={option2} click={onClick} position="-" />
+          <UserChoice data={option2} onClick={onClick} position="-" />
         </div>
       </div>
       <div className="flex items-center  justify-center  text-4xl bg-slate-100 rounded-xl p-5 mt-5 active:translate-y-1 drop-shadow-md">
-        <button id="undecided" onClick={onClick}>
+        <button id="undecided" onClick={() => onClick("undecided")}>
           UNDECIDED
         </button>
       </div>
