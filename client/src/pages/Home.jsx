@@ -37,10 +37,11 @@ function Home() {
   };
 
   const { option1, option2 } = data;
-  useEffect(()=>{
-    if( resp !== null)
-    console.log(resp)
-  },[resp])
+  useEffect(() => {
+    if (resp !== null) 
+    console.log(resp);
+  }, [resp]);
+
   return (
     <div className="pt-10 pb-10 ">
       <div className="grid grid-cols-2 gap-10 ">
