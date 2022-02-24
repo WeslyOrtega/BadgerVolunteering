@@ -4,25 +4,15 @@ import img1 from "../assets/pexels.jpg";
 import img2 from "../assets/pexels2.jpg";
 
 function Home() {
-  const [data] = useState({
-    id: "1",
-    option1: {
-      id: "snoopy",
-      text: "Date me",
-      img: img1,
-      alt: "happy office employee",
-      colorPrimary: "bg-red-100",
-      colorSecondary: "bg-red-200",
-    },
-    option2: {
-      id: "poopy",
-      text: "hate me",
-      img: img2,
-      alt: "happy people planting trees",
-      colorPrimary: "bg-green-100",
-      colorSecondary: "bg-green-200",
-    },
-  });
+  const fetchData = async () => {
+    const res = await fetch("http://localhost:5000/api/choice");
+    if (res.status === 200) {
+      const data = await res.json();
+      setData(data);
+    }
+  };
+
+  const [data, setData] = useState(null);
 
   const [resp, setResp] = useState(null);
 
@@ -36,20 +26,24 @@ function Home() {
     //this is where we will dispatch result to API endpoint and update state
   };
 
-  const { option1, option2 } = data;
   useEffect(() => {
-    if (resp !== null) 
-    console.log(resp);
+    fetchData();
+    if (resp !== null) console.log(resp);
   }, [resp]);
 
+  if (data === null) {
+    return <h1>Loading...</h1>;
+  }
+
+  const { choices } = data;
   return (
     <div className="pt-10 pb-10 ">
       <div className="grid grid-cols-2 gap-10 ">
-        <div className={`${option1.colorPrimary} rounded-lg`}>
-          <UserChoice data={option1} onClick={onClick} position="" />
+        <div className={`bg-gray-100 rounded-lg`}>
+          <UserChoice data={choices[0]} onClick={onClick} position="" />
         </div>
-        <div className={`${option2.colorPrimary} rounded-lg`}>
-          <UserChoice data={option2} onClick={onClick} position="-" />
+        <div className={`bg-gray-100 rounded-lg`}>
+          <UserChoice data={choices[1]} onClick={onClick} position="-" />
         </div>
       </div>
       <div className="flex items-center  justify-center  text-4xl bg-slate-100 rounded-xl p-5 mt-5 active:translate-y-1 drop-shadow-md">
