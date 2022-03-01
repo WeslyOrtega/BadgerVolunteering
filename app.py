@@ -8,14 +8,6 @@ app = Flask(__name__, static_folder='client/build', static_url_path='')
 CORS(app)
 
 
-@app.route('/api', methods=['GET'])
-@cross_origin()
-def index():
-    return {
-        "msg": "Coming Soon"
-    }
-
-
 @app.route('/api/<node>', methods=['GET'])
 @cross_origin()
 def choice(node):
