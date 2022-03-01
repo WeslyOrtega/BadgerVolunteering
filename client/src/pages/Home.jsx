@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 import {useSelector, useDispatch} from 'react-redux';
 import { getData, getNode, reset } from '../features/data/dataSlice'
 import UserChoice from "../components/UserChoice";
-import img1 from "../assets/pexels.jpg";
-import img2 from "../assets/pexels2.jpg";
 import { useNavigate } from "react-router-dom";
 
 function Home() {
