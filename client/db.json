@@ -1,0 +1,151 @@
+{
+  "nodes": [
+    {
+      "_id": "6217035701d269f6df9092f0",
+      "name": "Work with People/Not work with people",
+      "option1_destination": "6216ff0201d269f6df9092ed",
+      "option1_obj": "621706bc01d269f6df9092f5",
+      "option2_destination": "6217000401d269f6df9092ee",
+      "option2_obj": "6217074f01d269f6df9092f8",
+      "isFinal": false,
+      "final": []
+    },
+    {
+      "_id": "6216ff0201d269f6df9092ed",
+      "option1_destination": "621c148c9485dc0380d44a77",
+      "option2_destination": "621c15569485dc0380d44a7a",
+      "option2_obj": "6217079701d269f6df9092f9",
+      "option1_obj": "6217070501d269f6df9092f6",
+      "name": "Hands Dirty / Clean",
+      "isFinal": false,
+      "final": []
+    },
+    {
+      "_id": "621c148c9485dc0380d44a77",
+      "option1_destination": "Showers for homeless",
+      "option2_destination": "",
+      "option2_obj": "",
+      "option1_obj": "",
+      "name": "",
+      "isFinal": true,
+      "final": ["Showers for the homeless", "A second option", "A third option"]
+    },
+    {
+      "_id": "621c15569485dc0380d44a7a",
+      "option1_destination": "Environmental Education",
+      "option2_destination": "",
+      "option2_obj": "",
+      "option1_obj": "",
+      "name": "",
+      "isFinal": true,
+      "final": ["Environmental Education", "A second option", "A third option"]
+    },
+
+    {
+      "_id": "6217000401d269f6df9092ee",
+      "name": "Work in Nature / dont work in nature",
+      "option1_desination": "621c19b39485dc0380d44a7b",
+      "option1_obj": "6217072201d269f6df9092f7",
+      "option2_destination": "621c19c59485dc0380d44a7c",
+      "option2_obj": "621707c201d269f6df9092fa",
+      "isFinal": false,
+      "final": []
+    },
+    {
+      "_id": "621c19b39485dc0380d44a7b",
+      "option1_destination": "Plant a Tree",
+      "option2_destination": "",
+      "option2_obj": "",
+      "option1_obj": "",
+      "name": "",
+      "isFinal": true,
+      "final": ["Plant some trees", "A second option", "A third option"]
+    },
+    {
+      "_id": "621c19c59485dc0380d44a7c",
+      "option1_destination": "Build a Home",
+      "option2_destination": "",
+      "option2_obj": "",
+      "option1_obj": "",
+      "name": "",
+      "isFinal": true,
+      "final": ["Build some homes", "A second option", "A third option"]
+    }
+  ],
+  "options": [
+    {
+      "_id": "621706bc01d269f6df9092f5",
+      "text": "Work with People",
+      "alt": "Helping seniors",
+      "img": "https://i.imgur.com/NhRQado.jpg"
+    },
+    {
+      "_id": "6217070501d269f6df9092f6",
+      "text ": "Hands Dirty",
+      "alt": "Hands in soil",
+      "img": "https://i.imgur.com/W1ln4nK.jpg"
+    },
+    {
+      "_id": "6217072201d269f6df9092f7",
+      "text": "Work in Nature?",
+      "alt": "People planting a tree together",
+      "img": "https://i.imgur.com/G0OmfaS.jpg"
+    },
+    {
+      "_id": "6217074f01d269f6df9092f8",
+      "text": "Work with things",
+      "alt": "People building a house",
+      "img": "https://i.imgur.com/0HJTQmv.jpg"
+    },
+    {
+      "_id": "6217079701d269f6df9092f9",
+      "text": "Hands Clean",
+      "alt": "Two clean hands together",
+      "img": "https://i.imgur.com/6nBauuz.jpg"
+    },
+    {
+      "_id": "621707c201d269f6df9092fa",
+      "text": "Not Working in Nature",
+      "alt": "Community Volunteering",
+      "img": "https://i.imgur.com/v8sBPTk.jpg"
+    }
+  ],
+  "results": [
+    {
+      "_id": "621706bc01d269f6df9092f5",
+      "text": "Work with People",
+      "alt": "Helping seniors",
+      "img": "https://i.imgur.com/NhRQado.jpg"
+    },
+    {
+      "_id": "6217070501d269f6df9092f6",
+      "text ": "Hands Dirty",
+      "alt": "Hands in soil",
+      "img": "ihttps://i.imgur.com/W1ln4nK.jpgmg"
+    },
+    {
+      "_id": "6217072201d269f6df9092f7",
+      "text": "Work in Nature?",
+      "alt": "People planting a tree together",
+      "img": "https://i.imgur.com/G0OmfaS.jpg"
+    },
+    {
+      "_id": "6217074f01d269f6df9092f8",
+      "text": "Not working on people",
+      "alt": "People building a house",
+      "img": "https://i.imgur.com/0HJTQmv.jpg"
+    },
+    {
+      "_id": "6217079701d269f6df9092f9",
+      "text": "Hands Clean",
+      "alt": "Two clean hands together",
+      "img": "https://i.imgur.com/6nBauuz.jpg"
+    },
+    {
+      "_id": "621707c201d269f6df9092fa",
+      "text": "Not Working in Nature",
+      "alt": "Community Volunteering",
+      "img": "https://i.imgur.com/v8sBPTk.jpg"
+    }
+  ]
+}
