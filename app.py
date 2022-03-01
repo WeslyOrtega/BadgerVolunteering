@@ -18,6 +18,8 @@ def choice(node):
         return {"err": "Missing user token"}, 400
 
     node = Nodes_DB().find_by_id(node)
+    if not node:
+        return {"err": "Node not found"}, 404
 
     if node['isFinal']:
         # TODO
