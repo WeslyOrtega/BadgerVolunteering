@@ -16,19 +16,27 @@ def index():
     }
 
 
-@app.route('/api/choice', methods=['GET'])
+@app.route('/api/<node>', methods=['GET'])
 @cross_origin()
-def choice():
+def choice(node):
 
-    response = {"id": "someID"}
+    node = Nodes_DB().find_by_id(node)
 
-    choices = [
-        
-    ]
+    if node['isFinal']:
+        # TODO
+        pass
 
-    response["choices"] = choices
+    res = node.copy()
 
-    return response
+    obj1 = Options_DB().find_by_id(res["option1_obj"])
+    obj2 = Options_DB().find_by_id(res["option2_obj"])
+
+    res["option1_obj"] = obj1
+    res["option2_obj"] = obj2
+
+    res["user_token"] = str(uuid.uuid4())
+
+    return res
 
 
 @app.route('/api/begin', methods=['GET'])
@@ -46,8 +54,6 @@ def begin():
     res["option2_obj"] = obj2
 
     res["user_token"] = str(uuid.uuid4())
-
-    print(res)
 
     return res
 
