@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 from flask.helpers import send_from_directory
 from flask_cors import CORS, cross_origin
 from data_model import Nodes_DB, Options_DB
@@ -11,6 +11,11 @@ CORS(app)
 @app.route('/api/<node>', methods=['GET'])
 @cross_origin()
 def choice(node):
+
+    req: dict = request.get_json()
+    token = req.get("user_token")
+    if not token:
+        return {"err": "Missing user token"}, 400
 
     node = Nodes_DB().find_by_id(node)
 
@@ -26,9 +31,9 @@ def choice(node):
     res["option1_obj"] = obj1
     res["option2_obj"] = obj2
 
-    res["user_token"] = str(uuid.uuid4())
+    res["user_token"] = token
 
-    return res
+    return res, 200
 
 
 @app.route('/api/begin', methods=['GET'])
@@ -47,7 +52,7 @@ def begin():
 
     res["user_token"] = str(uuid.uuid4())
 
-    return res
+    return res, 200
 
 
 @app.route('/')
