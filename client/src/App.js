@@ -8,7 +8,7 @@ import Welcome from "./pages/Welcome";
 function App() {
 
   return (
-    <div className="container">
+    <div className="m-auto pl-4 pr-4 lg:pl-2 lg:pr-2 lg:max-w-5xl ">
       <Routes>
         <Route path="/" element={<Welcome />} />
 

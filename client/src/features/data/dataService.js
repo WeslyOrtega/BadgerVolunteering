@@ -20,7 +20,6 @@ const getNode = async (_id) => {
     option2_address: option2_destination,
     final: final
   };
-  console.log(res)
   return res;
 };
 
