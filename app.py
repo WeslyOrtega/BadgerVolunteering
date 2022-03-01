@@ -8,22 +8,24 @@ app = Flask(__name__, static_folder='client/build', static_url_path='')
 CORS(app)
 
 
-@app.route('/api/<node>', methods=['GET'])
+@app.route('/api/node', methods=['GET'])
 @cross_origin()
-def choice(node):
+def choice():
 
-    req: dict = request.get_json()
-    token = req.get("user_token")
+    token = request.headers.get("user_token")
     if not token:
         return {"err": "Missing user token"}, 400
 
-    node = Nodes_DB().find_by_id(node)
+    node_id = request.args.get("node_id")
+    if not node_id:
+        return {"err": "No node id was provided"}, 400
+
+    node = Nodes_DB().find_by_id(node_id)
     if not node:
         return {"err": "Node not found"}, 404
 
     if node['isFinal']:
-        # TODO
-        pass
+        return {"final": node["final"]}, 200
 
     res = node.copy()
 
@@ -33,7 +35,7 @@ def choice(node):
     res["option1_obj"] = obj1
     res["option2_obj"] = obj2
 
-    res["user_token"] = token
+    #res["user_token"] = token
 
     return res, 200
 
