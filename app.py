@@ -25,7 +25,7 @@ def choice():
         return {"err": "Node not found"}, 404
 
     if node['isFinal']:
-        return {"final": node["final"]}, 200
+        return {"final": node["final"], "isFinal": True}, 200
 
     res = node.copy()
 
