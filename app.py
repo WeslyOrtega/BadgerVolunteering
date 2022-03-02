@@ -29,8 +29,13 @@ def choice():
 
     res = node.copy()
 
+    del(res['_id'])
+
     obj1 = Options_DB().find_by_id(res["option1_obj"])
     obj2 = Options_DB().find_by_id(res["option2_obj"])
+
+    del(obj1["_id"])
+    del(obj2["_id"])
 
     res["option1_obj"] = obj1
     res["option2_obj"] = obj2
@@ -44,18 +49,8 @@ def choice():
 @cross_origin()
 def begin():
 
-    start_node: dict = Nodes_DB().find_by_id("6217035701d269f6df9092f0")
-
-    res = start_node.copy()
-
-    obj1 = Options_DB().find_by_id(res["option1_obj"])
-    obj2 = Options_DB().find_by_id(res["option2_obj"])
-
-    res["option1_obj"] = obj1
-    res["option2_obj"] = obj2
-
+    res = {"start": "6217035701d269f6df9092f0"}
     res["user_token"] = str(uuid.uuid4())
-
     return res, 200
 
 
