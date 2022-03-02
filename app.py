@@ -1,11 +1,16 @@
+import uuid
+
 from flask import Flask, request
 from flask.helpers import send_from_directory
 from flask_cors import CORS, cross_origin
+
 from data_model import Nodes_DB, Options_DB
-import uuid
+from logger import Logger
 
 app = Flask(__name__, static_folder='client/build', static_url_path='')
 CORS(app)
+
+logger = Logger()
 
 
 @app.route('/api/node', methods=['GET'])
@@ -24,8 +29,10 @@ def choice():
     if not node:
         return {"err": "Node not found"}, 404
 
+    logger.log_user_choice(token, node_id, node['isFinal'])
+
     if node['isFinal']:
-        return {"final": node["final"]}, 200
+        return {"final": node["final"], "isFinal": True}, 200
 
     res = node.copy()
 
@@ -34,13 +41,14 @@ def choice():
     obj1 = Options_DB().find_by_id(res["option1_obj"])
     obj2 = Options_DB().find_by_id(res["option2_obj"])
 
-    del(obj1["_id"])
-    del(obj2["_id"])
+    if obj1:
+        del(obj1["_id"])
+
+    if obj2:
+        del(obj2["_id"])
 
     res["option1_obj"] = obj1
     res["option2_obj"] = obj2
-
-    #res["user_token"] = token
 
     return res, 200
 
