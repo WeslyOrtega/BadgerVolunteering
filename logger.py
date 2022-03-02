@@ -1,6 +1,5 @@
 from gspread import authorize
 from oauth2client.service_account import ServiceAccountCredentials
-from pprint import pprint
 from dotenv import load_dotenv
 import os
 
@@ -42,17 +41,16 @@ class Logger():
 
             if isFinal:
                 self.sheet.update_cell(i + 2, 2, choice)
-            
+
             else:
-                colNum = len(existing.values()) + 1
+                values = list(filter(lambda x: x != "", existing.values()))
+                colNum = len(values) + 1
 
                 if colNum > len(existing.keys()):
                     self.sheet.update_cell(1, colNum, f"option{colNum - 2}")
 
                 self.sheet.update_cell(i + 2, colNum, choice)
-            
+
         else:
             values = [user_id, "", choice]
             self.sheet.append_row(values)
-
-Logger().log_user_choice("c", "Maybe not")
