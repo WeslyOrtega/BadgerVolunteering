@@ -4,6 +4,7 @@ import About from "./pages/About";
 import Results from './pages/Results'
 import "./App.css";
 import Welcome from "./pages/Welcome";
+import NodeEdit from "./pages/NodeEdit";
 
 function App() {
 
@@ -14,6 +15,8 @@ function App() {
 
         <Route path="home" element={<Home />} />
         <Route path="results" element={<Results />} />
+        <Route path="node-edit" element={<NodeEdit />} />
+
 
       </Routes>
     </div>
