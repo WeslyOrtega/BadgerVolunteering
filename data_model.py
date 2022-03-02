@@ -1,9 +1,12 @@
+import os
+
+import dns
 import pymongo
 from bson import ObjectId
-import dns
-
 from dotenv import load_dotenv
-import os
+
+
+load_dotenv()
 
 
 class Nodes_DB(dict):
@@ -15,7 +18,6 @@ class Nodes_DB(dict):
     __delattr__ = dict.__delitem__
     __setattr__ = dict.__setitem__
 
-    load_dotenv()
     URI = os.environ['URI']
 
     db_client = pymongo.MongoClient(
@@ -67,7 +69,6 @@ class Options_DB(dict):
     __delattr__ = dict.__delitem__
     __setattr__ = dict.__setitem__
 
-    load_dotenv()
     URI = os.environ['URI']
 
     db_client = pymongo.MongoClient(
