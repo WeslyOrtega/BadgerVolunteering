@@ -2,14 +2,49 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import dataService from "./dataService";
 
 const initialState = {
+  user_id: null,
   options: null,
-  data: [],
+  data: {},
   final: [],
   isError: false,
   isSuccess: false,
   isLoading: false,
   message: "",
 };
+
+// Get initial data
+export const getBegin = createAsyncThunk("data/getBegin", async (thunkAPI) => {
+  try {
+    return await dataService.getBegin();
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+
+    return thunkAPI.rejectWithValue(message);
+  }
+});
+
+// Get Data
+export const getData = createAsyncThunk(
+  "data/getData",
+  async (data, thunkAPI) => {
+    try {
+      return await dataService.getData(data);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 // Get Node
 export const getNode = createAsyncThunk(
   "data/getNode",
@@ -28,27 +63,6 @@ export const getNode = createAsyncThunk(
     }
   }
 );
-
-// Get Data
-export const getData = createAsyncThunk(
-  "data/getData",
-  async (_id, thunkAPI) => {
-    try {
-      return await dataService.getData(_id);
-    } catch (error) {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
-
-      return thunkAPI.rejectWithValue(message);
-    }
-  }
-);
-
-
 // Get Final Options
 export const getFinal = createAsyncThunk(
   "data/getFinal",
@@ -68,7 +82,6 @@ export const getFinal = createAsyncThunk(
   }
 );
 
-
 export const dataSlice = createSlice({
   name: "data",
   initialState,
@@ -83,6 +96,20 @@ export const dataSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(getBegin.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getBegin.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.user_id = action.payload;
+      })
+      .addCase(getBegin.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+        state.user_id = null;
+      })
       .addCase(getNode.pending, (state) => {
         state.isLoading = true;
       })
@@ -103,7 +130,7 @@ export const dataSlice = createSlice({
       .addCase(getData.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.data.push(action.payload);
+        state.data = action.payload;
       })
       .addCase(getData.rejected, (state, action) => {
         state.isLoading = false;

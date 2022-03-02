@@ -1,40 +1,36 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getNode, getData } from "../features/data/dataSlice";
+import { getNode, getData, getBegin } from "../features/data/dataSlice";
 
 function Welcome() {
-  const { data, isSuccess, isError, isLoading, message } = useSelector(
+  const { data, user_id, isSuccess, isError, isLoading, message } = useSelector(
     (state) => state.data
   );
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (data.length === 2) {
+    if (isSuccess && user_id) {
       navigate("/home");
     }
-  }, [data]);
+  }, [isSuccess]);
   const onClick = () => {
-    //  Get the initial node from database
-    dispatch(getNode("6217035701d269f6df9092f0"))
+    // Get starting data from API
+    dispatch(getBegin())
       .unwrap()
       .then((originalPromiseResult) => {
         // Let call complete and then get the addresses of options and get those elements
-        const {
-          isFinal,
-          option1_address,
-          option1_obj,
-          option2_address,
-          option2_obj,
-        } = originalPromiseResult;
-        dispatch(getData({ option1_obj, option1_address }));
-        dispatch(getData({ option2_obj, option2_address }));
+        const { start: node_id, user_token } = originalPromiseResult;
+        dispatch(getData({ user_token, node_id }));
       })
       .catch((rejectedValueOrSerializedError) => {
-        console.log("Error");
+        console.log("Error!");
       });
   };
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
 
   return (
     <div className="flex justify-center items-center h-screen md:container md:mx-auto">
