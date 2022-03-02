@@ -1,4 +1,4 @@
-import gspread
+from gspread import authorize
 from oauth2client.service_account import ServiceAccountCredentials
 from pprint import pprint
 from dotenv import load_dotenv
@@ -26,5 +26,28 @@ class Logger():
     }
 
     creds = ServiceAccountCredentials.from_json_keyfile_dict(creds, scopes)
-    client = gspread.authorize(creds)
+    client = authorize(creds)
     sheet = client.open("Badger Choice Log").sheet1
+
+    def log_user_choice(self, user_id, choice, isFinal=False):
+        data = self.sheet.get_all_records()
+
+        existing = None
+        for i, record in enumerate(data):
+            if record["user_id"] == user_id:
+                existing = record
+                break
+
+        if existing:
+            # TODO: Update the row if the user already existed
+            if isFinal:
+                pass
+            
+            else:
+                pass
+            
+        else:
+            values = [user_id, "", choice]
+            self.sheet.append_row(values)
+
+Logger().log_user_choice("c", "Same as b")
