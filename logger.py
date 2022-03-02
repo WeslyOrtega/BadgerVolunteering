@@ -32,7 +32,7 @@ class Logger():
     def log_user_choice(self, user_id, choice, isFinal=False):
         data = self.sheet.get_all_records()
 
-        existing = None
+        existing: dict = None
         for i, record in enumerate(data):
             if record["user_id"] == user_id:
                 existing = record
@@ -41,13 +41,14 @@ class Logger():
         if existing:
             # TODO: Update the row if the user already existed
             if isFinal:
-                pass
+                self.sheet.update_cell(i + 2, 2, choice)
             
             else:
-                pass
+                colNum = len(existing.values()) + 1
+                self.sheet.update_cell(i + 2, colNum, choice)
             
         else:
             values = [user_id, "", choice]
             self.sheet.append_row(values)
 
-Logger().log_user_choice("c", "Same as b")
+Logger().log_user_choice("b", "but he broke out")
