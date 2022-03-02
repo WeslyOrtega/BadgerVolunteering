@@ -43,11 +43,11 @@ class Logger():
                 self.sheet.update_cell(i + 2, 2, choice)
 
             else:
-                values = list(filter(lambda x: x != "", existing.values()))
-                colNum = len(values) + 1
+                values = list(filter(lambda x: x != "", list(existing.values())[2:]))
+                colNum = len(values) + 3
 
                 if colNum > len(existing.keys()):
-                    self.sheet.update_cell(1, colNum, f"option{colNum - 2}")
+                    self.sheet.update_cell(1, colNum, f"choice{colNum - 2}")
 
                 self.sheet.update_cell(i + 2, colNum, choice)
 
