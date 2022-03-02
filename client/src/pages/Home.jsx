@@ -10,11 +10,11 @@ function Home() {
   const { data, user_id, isError, isLoading, isSuccess, message } = useSelector(
     (state) => state.data
   );
-  const { option1_obj, option2_obj, option1_destination,  option2_destination} = data;
+  const { option1_obj, option2_obj, option1_destination,  option2_destination, isFinal} = data;
 
   useEffect(() => {
-    if(data.final){
-      console.log(data.final)
+    if(isFinal){
+      navigate('/results')
     }
   }, [data]);
 
@@ -26,7 +26,7 @@ function Home() {
     dispatch(getData(nodePackage))
   };
 
-  if (isLoading) {
+  if (isLoading || data.isFinal) {
     return <h1>Loading...</h1>;
   }
 
