@@ -1,26 +1,28 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getNode, getData, getBegin } from "../features/data/dataSlice";
+import { getBegin, getData } from "../features/data/dataSlice";
 
 function Welcome() {
-  const { data, user_id, isSuccess, isError, isLoading, message } = useSelector(
+  const { data, user_id, isSuccess, isError, isLoading } = useSelector(
     (state) => state.data
   );
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // If API retrieves data successfully we navigate to home page
   useEffect(() => {
     if (isSuccess && user_id) {
       navigate("/home");
     }
   }, [isSuccess]);
+
   const onClick = () => {
     // Get starting data from API
     dispatch(getBegin())
       .unwrap()
       .then((originalPromiseResult) => {
-        // Let call complete and then get the addresses of options and get those elements
+        // Let call complete and then use user_token and node_id to get data
         const { start: node_id, user_token } = originalPromiseResult;
         dispatch(getData({ user_token, node_id }));
       })
@@ -30,6 +32,9 @@ function Welcome() {
   };
   if (isLoading) {
     return <h1>Loading...</h1>;
+  }
+  if(isError){
+    return <h1>Server Error...</h1>
   }
 
   return (

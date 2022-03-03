@@ -6,9 +6,7 @@ import { Link } from "react-router-dom";
 import Logo from "../assets/logo.png";
 import ResultItem from "../components/ResultItem";
 function Results() {
-  const { options, isError, isLoading, isSuccess, message } = useSelector(
-    (state) => state.data
-  );
+
   return (
     <div className="h-screen relative flex flex-col justify-center">
       <div className="z-30  md:relative md:grid md:grid-cols-3 md:items-center md:p-3   ">

@@ -3,9 +3,7 @@ import dataService from "./dataService";
 
 const initialState = {
   user_id: null,
-  options: null,
   data: {},
-  final: [],
   isError: false,
   isSuccess: false,
   isLoading: false,

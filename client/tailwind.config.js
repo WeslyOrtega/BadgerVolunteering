@@ -15,6 +15,9 @@ module.exports = {
       animation: {
         wiggle: "wiggle 200ms ease-in-out",
       },
+      scale: {
+        '175': '.97',
+      }
     },
   },
   plugins: [],
