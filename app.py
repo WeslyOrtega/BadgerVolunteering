@@ -23,9 +23,12 @@ def review():
 
     req = request.get_json(force=True, silent=True)
     if req:
-        agreement = req['agree']
-        if agreement:
+        agreement = req.get('agree')
+        if agreement != None:
             logger.log_user_review(token, agreement)
+
+        else:
+            return {"err": "Missing data"}, 400
 
     return {}, 204
 
