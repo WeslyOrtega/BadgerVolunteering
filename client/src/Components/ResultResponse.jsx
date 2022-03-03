@@ -1,9 +1,12 @@
 import React from "react";
+import {useDispatch} from 'react-redux'
 import { FaCheck, FaTimes } from "react-icons/fa";
-function ResultResponse({text, details}) {
+import { sendResponse } from "../features/data/dataSlice";
 
+function ResultResponse({text, details}) {
+  const dispatch = useDispatch();
   const onClick=(e)=>{
-    console.log(e)
+    dispatch(sendResponse(e));
   }
   return (
     <>
@@ -11,13 +14,13 @@ function ResultResponse({text, details}) {
           </h1></div>
       <div className="grid grid-cols-2 pl-2 pr-2 gap-3 pb-3">
 
-      <button className='active:scale-175'  onClick={onClick('yes')}>
+      <button className='active:scale-175'  onClick={()=>onClick(true)}>
         <div  className="flex flex-col w-full items-center justify-center bg-slate-300 rounded-xl shadow-xl p-4 ">
             <h1>Agree?</h1>
           <FaCheck className="flex items-center justify-center w-full text-5xl text-green-700" />
         </div>
         </button>
-        <button className='active:scale-175' onClick={onClick('no')}>
+        <button className='active:scale-175' onClick={()=>onClick(false)}>
         <div className="flex flex-col items-center justify-center w-full bg-slate-300 rounded-xl shadow-xl p-4">
             <h1>Disagree?</h1>
           <FaTimes className="flex items-center justify-center w-full  text-5xl text-red-700" />

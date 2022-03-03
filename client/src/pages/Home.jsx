@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getData, getNode, reset } from "../features/data/dataSlice";
+import { getData, reset } from "../features/data/dataSlice";
 import UserChoice from "../components/UserChoice";
 import { useNavigate } from "react-router-dom";
 

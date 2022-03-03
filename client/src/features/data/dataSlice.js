@@ -43,30 +43,12 @@ export const getData = createAsyncThunk(
   }
 );
 
-// Get Node
-export const getNode = createAsyncThunk(
-  "data/getNode",
-  async (_id, thunkAPI) => {
+// Return final response
+export const sendResponse = createAsyncThunk(
+  "data/sendResponse",
+  async (data, thunkAPI) => {
     try {
-      return await dataService.getNode(_id);
-    } catch (error) {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
-
-      return thunkAPI.rejectWithValue(message);
-    }
-  }
-);
-// Get Final Options
-export const getFinal = createAsyncThunk(
-  "data/getFinal",
-  async (_id, thunkAPI) => {
-    try {
-      return await dataService.getFinal(_id);
+      return await dataService.sendResponse(data);
     } catch (error) {
       const message =
         (error.response &&
@@ -108,20 +90,6 @@ export const dataSlice = createSlice({
         state.message = action.payload;
         state.user_id = null;
       })
-      .addCase(getNode.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(getNode.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isSuccess = true;
-        state.options = action.payload;
-      })
-      .addCase(getNode.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = true;
-        state.message = action.payload;
-        state.options = null;
-      })
       .addCase(getData.pending, (state) => {
         state.isLoading = true;
       })
@@ -136,19 +104,17 @@ export const dataSlice = createSlice({
         state.message = action.payload;
         state.data = null;
       })
-      .addCase(getFinal.pending, (state) => {
+      .addCase(sendResponse.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getFinal.fulfilled, (state, action) => {
+      .addCase(sendResponse.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.final.push(action.payload);
       })
-      .addCase(getFinal.rejected, (state, action) => {
+      .addCase(sendResponse.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
-        state.data = null;
       });
   },
 });

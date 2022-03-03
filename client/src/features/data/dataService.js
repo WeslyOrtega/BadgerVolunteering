@@ -41,37 +41,24 @@ const getData = async (data) => {
   );
   return response.data;
 };
-
-// Get Final objects and return them
-const getFinal = async (_id) => {
-  let response = null;
-  let result = null;
-  if (_id.option1_obj) {
-    response = await axios.get(
-      `http://localhost:3000/options?_id=${_id.option1_obj}`
-    );
-    result = { ...response.data[0], dest_node: _id.option1_address };
-  } else if (_id.option2_obj) {
-    response = await axios.get(
-      `http://localhost:3000/options?_id=${_id.option2_obj}`
-    );
-    result = { ...response.data[0], dest_node: _id.option2_address };
-  }
-
-  return result;
-};
-
-// Get following choices and send choices
-const getDataAndRespond = async (choice) => {
-  const response = await axios.get(API_URL, choice);
-  return response.data;
+// Send final response to backend
+const sendResponse = async (data) => {
+  console.log('nothing to see here...')
+  // const response = await axios.get(
+  //   `http://127.0.0.1:5000/api/node?node_id=${data.node_id}`,
+  //   {
+  //     headers: {
+  //       user_token: data.user_token,
+  //     },
+  //   }
+  // );
+  // return response.data;
 };
 
 const dataService = {
   getBegin,
   getData,
-  getNode,
-  getDataAndRespond,
+  sendResponse,
 };
 export default dataService;
 

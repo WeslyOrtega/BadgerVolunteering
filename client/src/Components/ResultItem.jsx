@@ -1,6 +1,6 @@
 import React from "react";
 import ResultResponse from "./ResultResponse";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 function ResultItem() {
   const { data, isError, isLoading, isSuccess, message } = useSelector(
