@@ -25,7 +25,7 @@ def review():
     if req:
         agreement = req['agree']
         if agreement:
-            logger.log_user_review(agreement)
+            logger.log_user_review(token, agreement)
 
     return {}, 204
 
