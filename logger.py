@@ -28,6 +28,12 @@ class Logger():
     client = authorize(creds)
     sheet = client.open("Badger Choice Log").sheet1
 
+    FINAL_COL = 2
+    REVIEW_COL = 3
+
+    ROW_OFFSET = 2
+    DATA_OFFSET = 3
+
     def log_user_choice(self, user_id, choice, isFinal=False):
         data = self.sheet.get_all_records()
 
@@ -40,17 +46,36 @@ class Logger():
         if existing:
 
             if isFinal:
-                self.sheet.update_cell(i + 2, 2, choice)
+                self.sheet.update_cell(i + self.ROW_OFFSET, self.FINAL_COL, choice)
 
             else:
-                values = list(filter(lambda x: x != "", list(existing.values())[2:]))
-                colNum = len(values) + 3
+                values = list(filter(lambda x: x != "", list(existing.values())[self.DATA_OFFSET:]))
+                colNum = len(values) + self.DATA_OFFSET + 1
 
                 if colNum > len(existing.keys()):
-                    self.sheet.update_cell(1, colNum, f"choice{colNum - 2}")
+                    self.sheet.update_cell(1, colNum, f"choice{colNum - self.DATA_OFFSET}")
 
-                self.sheet.update_cell(i + 2, colNum, choice)
+                self.sheet.update_cell(i + self.ROW_OFFSET, colNum, choice)
 
         else:
-            values = [user_id, "", choice]
+            values = [user_id]
+            for _ in range(1, self.DATA_OFFSET):
+                values.append("")
+            values.append(choice)
+
             self.sheet.append_row(values)
+
+    
+    def log_user_review(self, user_id, review):
+        
+        data = self.sheet.get_all_records()
+
+        existing: dict = None
+        for i, entry in enumerate(data):
+            if entry['user_id'] == user_id:
+                existing = entry
+                break
+
+        if existing:
+
+            self.sheet.update_cell(i + self.ROW_OFFSET, self.REVIEW_COL, review)
