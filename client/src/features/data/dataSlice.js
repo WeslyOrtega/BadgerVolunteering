@@ -66,13 +66,7 @@ export const dataSlice = createSlice({
   name: "data",
   initialState,
   reducers: {
-    reset: (state) => {
-      state.data = [];
-      state.isLoading = false;
-      state.isError = false;
-      state.isSuccess = false;
-      state.message = "";
-    },
+    reset: (state) => initialState,
   },
   extraReducers: (builder) => {
     builder

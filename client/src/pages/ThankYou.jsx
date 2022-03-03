@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getBegin, getData } from "../features/data/dataSlice";
+import { reset } from "../features/data/dataSlice";
 
-function Welcome() {
-  const { user_id, isSuccess, isError, isLoading } = useSelector(
+function ThankYou() {
+  const {  isSuccess, isError, isLoading } = useSelector(
     (state) => state.data
   );
   const dispatch = useDispatch();
@@ -12,23 +12,12 @@ function Welcome() {
 
   // If API retrieves data successfully we navigate to home page
   useEffect(() => {
-    if (isSuccess && user_id) {
-      navigate("/home");
-    }
-  }, [isSuccess]);
+      dispatch(reset());
+
+  }, [dispatch,reset]);
 
   const onClick = () => {
-    // Get starting data from API
-    dispatch(getBegin())
-      .unwrap()
-      .then((originalPromiseResult) => {
-        // Let call complete and then use user_token and node_id to get data
-        const { start: node_id, user_token } = originalPromiseResult;
-        dispatch(getData({ user_token, node_id }));
-      })
-      .catch((rejectedValueOrSerializedError) => {
-        console.log("Error!");
-      });
+   navigate('/home')
   };
   if (isLoading) {
     return <h1>Loading...</h1>;
@@ -43,24 +32,24 @@ function Welcome() {
         <div className="flex flex-col items-center justify-center h-full w-full">
           <div className="text-center text-slate-600  ">
             <h1 className="font-PlayfairDisplay text-5xl mb-10 md:text-6xl">
-              WELCOME TO BADGER
+            BADGER
             </h1>
             <p className="font-Poppins text-sm px-10 mb-7 md:mb-10 md:px-24 md:text-base">
-              Matching you to volunteer work that fits your personality.
+              Thank you for contribution
             </p>
           </div>
-          <div className="w-full mt-10 px-6 md:w-1/3 md:mt-9">
+          {/* <div className="w-full mt-10 px-6 md:w-1/3 md:mt-9">
             <button
               className="bg-slate-600  py-5 w-full text-slate-100 rounded-2xl shadow-lg hover:text-white hover:shadow-xl focus:animate-wiggle"
               onClick={onClick}
             >
-              Begin...
+              Try again...
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
   );
 }
 
-export default Welcome;
+export default ThankYou;
