@@ -1,4 +1,4 @@
-import {  useDispatch } from "react-redux";
+import {  useDispatch, useSelector} from "react-redux";
 import { FaCheck, FaTimes } from "react-icons/fa";
 import { sendResponse } from "../features/data/dataSlice";
 import { useNavigate } from "react-router-dom";
@@ -6,9 +6,16 @@ import { useNavigate } from "react-router-dom";
 function ResultResponse({ text, details }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const {  user_id } = useSelector(
+    (state) => state.data
+  );
 
   const onClick = (e) => {
-    dispatch(sendResponse(e));
+    dispatch(sendResponse(
+      {
+      agree: e,
+      user_token: user_id.user_token}
+      ));
     navigate('/thank-you')
   };
   return (

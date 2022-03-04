@@ -11,10 +11,10 @@ function ThankYou() {
   const navigate = useNavigate();
 
   // If API retrieves data successfully we navigate to home page
-  useEffect(() => {
-      dispatch(reset());
+  // useEffect(() => {
+  //     dispatch(reset());
 
-  }, [dispatch,reset]);
+  // }, [dispatch,reset]);
 
   const onClick = () => {
    navigate('/home')

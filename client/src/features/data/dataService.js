@@ -39,20 +39,21 @@ const getData = async (data) => {
       },
     }
   );
-  return response.data;
+ return response.data;
 };
+
+
 // Send final response to backend
 const sendResponse = async (data) => {
-  console.log('nothing to see here...')
-  // const response = await axios.get(
-  //   `http://127.0.0.1:5000/api/node?node_id=${data.node_id}`,
-  //   {
-  //     headers: {
-  //       user_token: data.user_token,
-  //     },
-  //   }
-  // );
-  // return response.data;
+  const config = {
+    headers: { user_token: data.user_token },
+  };
+  const response = await axios.post(
+    `http://127.0.0.1:5000/api/review`,
+    { agree: data.agree },
+    config
+  );
+  return response.data;
 };
 
 const dataService = {
