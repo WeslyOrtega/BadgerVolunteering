@@ -1,15 +1,20 @@
 import axios from "axios";
 const API_URL = "/api/choice/";
 
+const baseURL =
+  process.env.REACT_APP_ENV === "prod"
+    ? "https://badgervolunteering.herokuapp.com"
+    : "http://localhost:5000";
+
 // Get initial user data
 const getBegin = async () => {
-  const response = await axios.get(`http://127.0.0.1:5000/api/begin`);
+  const response = await axios.get(`${baseURL}/api/begin`);
 
   return response.data;
 };
 // Get Initial Choices; will do this work in backend
 const getNode = async (_id) => {
-  const response = await axios.get(`http://localhost:3000/nodes?_id=${_id}`);
+  const response = await axios.get(`${baseURL}/nodes?_id=${_id}`);
   const {
     option1_destination,
     option2_destination,
@@ -32,16 +37,15 @@ const getNode = async (_id) => {
 // Get Initial Choices; will do this work in backend
 const getData = async (data) => {
   const response = await axios.get(
-    `http://127.0.0.1:5000/api/node?node_id=${data.node_id}`,
+    `${baseURL}/api/node?node_id=${data.node_id}`,
     {
       headers: {
         user_token: data.user_token,
       },
     }
   );
- return response.data;
+  return response.data;
 };
-
 
 // Send final response to backend
 const sendResponse = async (data) => {
@@ -49,7 +53,7 @@ const sendResponse = async (data) => {
     headers: { user_token: data.user_token },
   };
   const response = await axios.post(
-    `http://127.0.0.1:5000/api/review`,
+    `${baseURL}/api/review`,
     { agree: data.agree },
     config
   );
