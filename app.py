@@ -13,6 +13,26 @@ CORS(app)
 logger = Logger()
 
 
+@app.route('/api/review', methods=['POST'])
+@cross_origin()
+def review():
+    
+    token = request.headers.get("user_token")
+    if not token:
+        return {"err": "Missing user token"}, 400
+
+    req = request.get_json(force=True, silent=True)
+    if req:
+        agreement = req.get('agree')
+        if agreement != None:
+            logger.log_user_review(token, agreement)
+
+        else:
+            return {"err": "Missing data"}, 400
+
+    return {}, 204
+
+
 @app.route('/api/node', methods=['GET'])
 @cross_origin()
 def choice():

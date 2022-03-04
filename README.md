@@ -126,7 +126,25 @@ Used to get the data of a node.
 | `option2_obj` | Object holding the data for the option (see #Option Representation) |
 | `option2_destination` | ID of the node linked to `option2_obj` |
 
-##  Option Representation
+## `/api/review`
+
+Used to store the review from a user
+
+### Compatible Methods
+
+* POST
+
+### Request
+
+| Field | Description |
+| ----- | ----------- |
+| `agree` | Bool representing user review (`true` for agreement) |
+
+### Resonse
+
+Does not return any data
+
+#  Option Representation
 
 | Field | Description |
 | ----- | ----------- |
