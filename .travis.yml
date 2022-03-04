@@ -1,7 +1,7 @@
 jobs:
   include:
     - language: python
-      python: 3.9.4
+      python: 3.9
       before_script:
         - pip install flake8
       script:
@@ -15,6 +15,7 @@ jobs:
       before_script:
         - cd client/
       script:
+        - npm i
         - npm run build
 
 notifications:
