@@ -1,25 +1,20 @@
-import logo from './logo.png';
-import './App.css';
-import {useState, useEffect} from 'react';
-import {Message} from './Components/Message/Message'
-
+import { Routes, Route, Link } from "react-router-dom";
+import Home from "./pages/Home";
+import Results from "./pages/Results";
+import "./App.css";
+import Welcome from "./pages/Welcome";
+import NodeEdit from "./pages/NodeEdit";
+import ThankYou from "./pages/ThankYou";
 function App() {
-  const [state, setState] = useState({})
-
-  useEffect(() => {
-    fetch("/api").then(response => {
-      if (response.status === 200) {
-        return response.json()
-      }
-    }).then(data => setState(data))
-    .then(error => console.log(error))
-  }, [])
-
   return (
-    <div className="App">
-      <img src={logo} alt='Badger logo'/>
-      <div className='Title'>BADGER</div>
-      <Message prop={state}/>
+    <div className="m-auto pl-4 pr-4 lg:pl-2 lg:pr-2 lg:max-w-5xl ">
+      <Routes>
+        <Route path="/" element={<Welcome />} />
+        <Route path="home" element={<Home />} />
+        <Route path="results" element={<Results />} />
+        <Route path="node-edit" element={<NodeEdit />} />
+        <Route path="thank-you" element={<ThankYou />} />
+      </Routes>
     </div>
   );
 }
