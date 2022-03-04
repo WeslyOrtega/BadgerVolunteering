@@ -17,7 +17,3 @@ jobs:
       script:
         - npm i
         - npm run build
-
-notifications:
-  email:
-    - weslyortega@gmail.com
