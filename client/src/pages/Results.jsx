@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import Logo from "../assets/logo.png";
 import ResultItem from "../Components/ResultItem";
 function Results() {
-
   return (
     <div className="h-screen relative flex flex-col justify-center">
       <div className="z-30  md:relative md:grid md:grid-cols-3 md:items-center md:p-3   ">

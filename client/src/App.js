@@ -1,7 +1,6 @@
 import { Routes, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
-import About from "./pages/About";
-import Results from './pages/Results'
+import Results from "./pages/Results";
 import "./App.css";
 import Welcome from "./pages/Welcome";
 import NodeEdit from "./pages/NodeEdit";
@@ -15,7 +14,6 @@ function App() {
         <Route path="results" element={<Results />} />
         <Route path="node-edit" element={<NodeEdit />} />
         <Route path="thank-you" element={<ThankYou />} />
-
       </Routes>
     </div>
   );
