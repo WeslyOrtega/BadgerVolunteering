@@ -1,0 +1,19 @@
+jobs:
+  include:
+    - language: python
+      python: 3.9
+      before_script:
+        - pip install flake8
+      script:
+        - pip install -r requirements.txt
+        - flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics --exclude=env
+        - flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics --exclude=env
+
+    - language: node_js
+      node_js:
+        - "stable"
+      before_script:
+        - cd client/
+      script:
+        - npm i
+        - npm run build

@@ -1,6 +1,5 @@
 import os
 
-import dns
 import pymongo
 from bson import ObjectId
 from dotenv import load_dotenv

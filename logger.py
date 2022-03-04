@@ -46,14 +46,17 @@ class Logger():
         if existing:
 
             if isFinal:
-                self.sheet.update_cell(i + self.ROW_OFFSET, self.FINAL_COL, choice)
+                self.sheet.update_cell(
+                    i + self.ROW_OFFSET, self.FINAL_COL, choice)
 
             else:
-                values = list(filter(lambda x: x != "", list(existing.values())[self.DATA_OFFSET:]))
+                values = list(filter(lambda x: x != "", list(
+                    existing.values())[self.DATA_OFFSET:]))
                 colNum = len(values) + self.DATA_OFFSET + 1
 
                 if colNum > len(existing.keys()):
-                    self.sheet.update_cell(1, colNum, f"choice{colNum - self.DATA_OFFSET}")
+                    self.sheet.update_cell(
+                        1, colNum, f"choice{colNum - self.DATA_OFFSET}")
 
                 self.sheet.update_cell(i + self.ROW_OFFSET, colNum, choice)
 
@@ -65,9 +68,8 @@ class Logger():
 
             self.sheet.append_row(values)
 
-    
     def log_user_review(self, user_id, review):
-        
+
         data = self.sheet.get_all_records()
 
         existing: dict = None
@@ -78,4 +80,5 @@ class Logger():
 
         if existing:
 
-            self.sheet.update_cell(i + self.ROW_OFFSET, self.REVIEW_COL, review)
+            self.sheet.update_cell(i + self.ROW_OFFSET,
+                                   self.REVIEW_COL, review)
