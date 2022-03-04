@@ -26,7 +26,7 @@ class Logger():
 
     creds = ServiceAccountCredentials.from_json_keyfile_dict(creds, scopes)
     client = authorize(creds)
-    sheet = client.open("Badger Choice Log").sheet1
+    sheet = client.open(os.environ['D_LOG_DOC']).sheet1
 
     FINAL_COL = 2
     REVIEW_COL = 3
