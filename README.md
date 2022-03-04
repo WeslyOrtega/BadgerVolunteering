@@ -1,8 +1,10 @@
 # Badger Volunteering
 
+[![Build Status](https://app.travis-ci.com/WeslyOrtega/BadgerVolunteering.svg?token=jy8NgKVmisMbF6FWhk5a&branch=main)](https://app.travis-ci.com/WeslyOrtega/BadgerVolunteering)
+
 # Frontend
 
-See the `client` directory for information on the frontend.
+See the `client` directory for information about the frontend.
 
 # Backend
 
@@ -87,7 +89,7 @@ Used to get the starting node and a token for the user.
 
 ### Compatible Methods
 
-* GET
+- GET
 
 ### Request
 
@@ -95,9 +97,9 @@ Does not expect any data
 
 ### Response
 
-| Field | Description |
-| ----- | ----------- |
-| `start` | The `node_id` of the top of the tree |
+| Field        | Description                                    |
+| ------------ | ---------------------------------------------- |
+| `start`      | The `node_id` of the top of the tree           |
 | `user_token` | A token to be used as an identifier for a user |
 
 ## `/api/node`
@@ -106,25 +108,25 @@ Used to get the data of a node.
 
 ### Compatible Methods
 
-* GET
+- GET
 
 ### Request
 
-| Field | Description |
-| ----- | ----------- |
-| `user_token` | Token used to identify the user. Passed in through the header. ex: `.../api/node?node_id=123`|
-| `node_id` | ID of the node to be searched. Passed in as a query string |
+| Field        | Description                                                                                   |
+| ------------ | --------------------------------------------------------------------------------------------- |
+| `user_token` | Token used to identify the user. Passed in through the header. ex: `.../api/node?node_id=123` |
+| `node_id`    | ID of the node to be searched. Passed in as a query string                                    |
 
 ### Response
 
-| Field | Description |
-| ----- | ----------- |
-| `isFinal` | Boolean indicating whether the response contains a leaf node |
-| `name` | The name of the current node |
-| `option1_obj` | Object holding the data for the option (see #Option Representation) |
-| `option1_destination` | ID of the node linked to `option1_obj` |
-| `option2_obj` | Object holding the data for the option (see #Option Representation) |
-| `option2_destination` | ID of the node linked to `option2_obj` |
+| Field                 | Description                                                                                  |
+| --------------------- | -------------------------------------------------------------------------------------------- |
+| `isFinal`             | Boolean indicating whether the response contains a leaf node                                 |
+| `name`                | The name of the current node                                                                 |
+| `option1_obj`         | Object holding the data for the option (see [Option Representation](#option-representation)) |
+| `option1_destination` | ID of the node linked to `option1_obj`                                                       |
+| `option2_obj`         | Object holding the data for the option (see [Option Representation](#option-representation)) |
+| `option2_destination` | ID of the node linked to `option2_obj`                                                       |
 
 ## `/api/review`
 
@@ -132,22 +134,22 @@ Used to store the review from a user
 
 ### Compatible Methods
 
-* POST
+- POST
 
 ### Request
 
-| Field | Description |
-| ----- | ----------- |
+| Field   | Description                                          |
+| ------- | ---------------------------------------------------- |
 | `agree` | Bool representing user review (`true` for agreement) |
 
 ### Resonse
 
 Does not return any data
 
-#  Option Representation
+# Option Representation
 
-| Field | Description |
-| ----- | ----------- |
-| `alt` | Alt text for `img` |
-| `img` | Image for the option |
+| Field  | Description                       |
+| ------ | --------------------------------- |
+| `alt`  | Alt text for `img`                |
+| `img`  | Image for the option              |
 | `text` | The test corresponding the option |
