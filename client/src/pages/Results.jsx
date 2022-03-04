@@ -2,7 +2,7 @@ import React from "react";
 import { FaArrowAltCircleRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Logo from "../assets/logo.png";
-import ResultItem from "../components/ResultItem";
+import ResultItem from "../Components/ResultItem";
 function Results() {
 
   return (
