@@ -33,8 +33,8 @@ function Welcome() {
   if (isLoading) {
     return <h1>Loading...</h1>;
   }
-  if(isError){
-    return <h1>Server Error...</h1>
+  if (isError) {
+    return <h1>Server Error...</h1>;
   }
 
   return (

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getNodes, getOptions } from "../features/tree/treeSlice";
 function NodeEdit() {
@@ -7,11 +7,10 @@ function NodeEdit() {
   useEffect(() => {
     dispatch(getNodes());
     dispatch(getOptions());
-
   }, []);
 
-  if(isLoading){
-      return <h1>Loading...</h1>
+  if (isLoading) {
+    return <h1>Loading...</h1>;
   }
   return (
     <>

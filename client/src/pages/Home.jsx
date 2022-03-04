@@ -10,29 +10,35 @@ function Home() {
   const { data, user_id, isError, isLoading, isSuccess, message } = useSelector(
     (state) => state.data
   );
-  const { option1_obj, option2_obj, option1_destination,  option2_destination, isFinal} = data;
+  const {
+    option1_obj,
+    option2_obj,
+    option1_destination,
+    option2_destination,
+    isFinal,
+  } = data;
 
   // If this is a leaf node we navigate to results
   useEffect(() => {
-    if(isFinal){
-      navigate('/results')
+    if (isFinal) {
+      navigate("/results");
     }
   }, [data]);
 
   const onClick = (e) => {
     const nodePackage = {
       user_token: user_id.user_token,
-      node_id: e
-    }
-    dispatch(getData(nodePackage))
+      node_id: e,
+    };
+    dispatch(getData(nodePackage));
   };
 
-  if (isLoading || data.isFinal ) {
+  if (isLoading || data.isFinal) {
     return <h1>Loading...</h1>;
   }
 
-  if(isError){
-    return<h1>Server Error...</h1>
+  if (isError) {
+    return <h1>Server Error...</h1>;
   }
 
   return (
