@@ -2,7 +2,7 @@ import React from "react";
 import { FaArrowAltCircleRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Logo from "../assets/logo.png";
-import ResultItem from "../Components/ResultItem";
+import ResultItem from "../components/ResultItem";
 function Results() {
   return (
     <div className="h-screen relative flex flex-col justify-center">
