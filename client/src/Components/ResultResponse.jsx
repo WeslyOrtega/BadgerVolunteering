@@ -22,7 +22,7 @@ function ResultResponse({ text, details }) {
     <>
       <div className="font-Poppins text-center pb-3 overflow-hidden">
         <h1>
-          We think you'd be a great fit at...
+          Our algorithm has matched you with ...
           <span className="text-xl"> {text}</span>
         </h1>
       </div>
