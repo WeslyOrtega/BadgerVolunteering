@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getData, reset } from "../features/data/dataSlice";
-import UserChoice from "../components/UserChoice";
+import UserChoice from "../Components/UserChoice";
 import { useNavigate } from "react-router-dom";
-import Spinner from "../components/Spinner";
+import Spinner from "../Components/Spinner";
 function Home() {
   const dispatch = useDispatch();
   const navigate = useNavigate();

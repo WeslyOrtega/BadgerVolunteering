@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getBegin, getData } from "../features/data/dataSlice";
-
+import Spinner from "../Components/Spinner";
 function Welcome() {
   const { user_id, isSuccess, isError, isLoading } = useSelector(
     (state) => state.data
@@ -31,7 +31,7 @@ function Welcome() {
       });
   };
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <Spinner />;
   }
   if (isError) {
     return <h1>Server Error...</h1>;

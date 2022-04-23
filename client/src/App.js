@@ -7,7 +7,7 @@ import NodeEdit from "./pages/NodeEdit";
 import ThankYou from "./pages/ThankYou";
 import Tool from './pages/Tool'
 import HomeV2 from './pages/HomeV2'
-import Spinner from "./components/Spinner";
+import Spinner from "./Components/Spinner";
 function App() {
   return (
     <div className="m-auto pl-4 pr-4 lg:pl-2 lg:pr-2 lg:max-w-5xl ">
