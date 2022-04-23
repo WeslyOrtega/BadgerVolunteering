@@ -77,7 +77,7 @@ def choice():
 @cross_origin()
 def begin():
 
-    res = {"start": "6217035701d269f6df9092f0"}
+    res = {"start": "62635a16bd9caf3728a46690"}
     res["user_token"] = str(uuid.uuid4())
     return res, 200
 
