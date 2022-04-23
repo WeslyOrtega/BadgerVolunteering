@@ -16,7 +16,7 @@ logger = Logger()
 @app.route('/api/review', methods=['POST'])
 @cross_origin()
 def review():
-    
+
     token = request.headers.get("user_token")
     if not token:
         return {"err": "Missing user token"}, 400
@@ -24,7 +24,7 @@ def review():
     req = request.get_json(force=True, silent=True)
     if req:
         agreement = req.get('agree')
-        if agreement != None:
+        if agreement is not None:
             logger.log_user_review(token, agreement)
 
         else:

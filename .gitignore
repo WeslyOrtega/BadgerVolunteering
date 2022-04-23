@@ -6,3 +6,6 @@ env
 
 # Secrets
 .env
+
+# Node
+node_modules
