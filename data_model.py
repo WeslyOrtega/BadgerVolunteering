@@ -31,7 +31,9 @@ class Nodes_DB(dict):
         if not self._id:
             self.collection.insert_one(self)
         else:
-            self.collection.update_one({"_id": ObjectId(self._id)}, self)
+            id = self._id
+            del(self._id)
+            self.collection.update_one({"_id": ObjectId(id)}, {"$set": self})
         self._id = str(self._id)
         return self
 
@@ -82,7 +84,9 @@ class Options_DB(dict):
         if not self._id:
             self.collection.insert_one(self)
         else:
-            self.collection.update_one({"_id": ObjectId(self._id)}, self)
+            id = self._id
+            del(self._id)
+            self.collection.update_one({"_id": ObjectId(id)}, {"$set": self})
         self._id = str(self._id)
 
     def reload(self):
