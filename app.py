@@ -139,7 +139,18 @@ def choice():
         # Check if environment is in dev mode
         if os.environ['FLASK_ENV'] != 'development':
             return {"err": "operation not allowed"}, 400
-        pass
+
+        node_id = request.args.get("node_id")
+        if not node_id:
+            return {"err": "No node id was provided"}, 400
+
+        node = Nodes_DB().find_by_id(node_id)
+        if not node:
+            return {"err": "Node not found"}, 404
+
+        Nodes_DB(node).remove()
+
+        return {}, 204
     # End DELETE method
 
 
