@@ -84,7 +84,21 @@ def choice():
         # Check if environment is in dev mode
         if os.environ['FLASK_ENV'] != 'development':
             return {"err": "operation not allowed"}, 400
-        pass
+
+        req = request.get_json(force=True, silent=True)
+
+        new_node = {
+            "img": req.get("img", ""),
+            "name": req.get("name", ""),
+            "option1_destination": req.get("option1_destination", ""),
+            "option2_destination": req.get("option2_destination", ""),
+            "option1_obj": req.get("option1_obj", ""),
+            "option2_obj": req.get("option2_obj", ""),
+            "isFinal": req.get("isFinal", False)
+        }
+
+        return Nodes_DB(new_node).save(), 200
+
     # End POST method
 
     # Start PUT method
