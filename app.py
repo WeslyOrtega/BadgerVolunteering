@@ -128,8 +128,6 @@ def choice():
         node["option2_obj"] = req.get("option2_obj", node["option2_obj"])
         node["isFinal"] = req.get("isFinal", node["isFinal"])
 
-        print(node)
-
         Nodes_DB(node).save()
 
         return node, 200
