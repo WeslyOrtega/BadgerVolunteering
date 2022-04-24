@@ -118,15 +118,10 @@ def choice():
 
         req = request.get_json()
 
-        node["img"] = req.get("img", node["img"])
-        node["name"] = req.get("name", node["name"])
-        node["option1_destination"] = req.get(
-            "option1_destination", node["option1_destination"])
-        node["option2_destination"] = req.get(
-            "option2_destination", node["option2_destination"])
-        node["option1_obj"] = req.get("option1_obj", node["option1_obj"])
-        node["option2_obj"] = req.get("option2_obj", node["option2_obj"])
-        node["isFinal"] = req.get("isFinal", node["isFinal"])
+        for key in node.keys():
+            content = req.get(key, None)
+            if content is not None and key is not "_id":
+                node[key] = content
 
         Nodes_DB(node).save()
 
