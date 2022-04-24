@@ -22,17 +22,18 @@ class Nodes_DB(dict):
     db_client = pymongo.MongoClient(
         URI,
         tls=True,
-        tlsAllowInvalidCertificates=True)
+        tlsAllowInvalidCertificates=True
+    )
     db = db_client.get_database('badgerdatabase')
     collection = db['nodes']
 
     def save(self):
         if not self._id:
-            self.collection.insert(self)
+            self.collection.insert_one(self)
         else:
-            self.collection.update(
-                {"_id": ObjectId(self._id)}, self)
+            self.collection.update_one({"_id": ObjectId(self._id)}, self)
         self._id = str(self._id)
+        return self
 
     def reload(self):
         if self._id:
@@ -45,7 +46,7 @@ class Nodes_DB(dict):
 
     def remove(self):
         if self._id:
-            resp = self.collection.remove({"_id": ObjectId(self._id)})
+            resp = self.collection.delete_one({"_id": ObjectId(self._id)})
             self.clear()
             return resp
 
@@ -79,10 +80,9 @@ class Options_DB(dict):
 
     def save(self):
         if not self._id:
-            self.collection.insert(self)
+            self.collection.insert_one(self)
         else:
-            self.collection.update(
-                {"_id": ObjectId(self._id)}, self)
+            self.collection.update_one({"_id": ObjectId(self._id)}, self)
         self._id = str(self._id)
 
     def reload(self):
@@ -96,7 +96,7 @@ class Options_DB(dict):
 
     def remove(self):
         if self._id:
-            resp = self.collection.remove({"_id": ObjectId(self._id)})
+            resp = self.collection.delete_one({"_id": ObjectId(self._id)})
             self.clear()
             return resp
 
