@@ -35,7 +35,7 @@ def review():
     return {}, 204
 
 
-@app.route('/api/node', methods=['GET', 'POST', 'PUT', 'DELETE'])
+@app.route('/api/node', methods=['GET', 'POST', 'PATCH', 'DELETE'])
 @cross_origin()
 def choice():
 
@@ -102,12 +102,37 @@ def choice():
     # End POST method
 
     # Start PUT method
-    elif request.method == 'PUT':
+    elif request.method == 'PATCH':
 
         # Check if environment is in dev mode
         if os.environ['FLASK_ENV'] != 'development':
             return {"err": "operation not allowed"}, 400
-        pass
+
+        node_id = request.args.get("node_id")
+        if not node_id:
+            return {"err": "No node id was provided"}, 400
+
+        node = Nodes_DB().find_by_id(node_id)
+        if not node:
+            return {"err": "Node not found"}, 404
+
+        req = request.get_json()
+
+        node["img"] = req.get("img", node["img"])
+        node["name"] = req.get("name", node["name"])
+        node["option1_destination"] = req.get(
+            "option1_destination", node["option1_destination"])
+        node["option2_destination"] = req.get(
+            "option2_destination", node["option2_destination"])
+        node["option1_obj"] = req.get("option1_obj", node["option1_obj"])
+        node["option2_obj"] = req.get("option2_obj", node["option2_obj"])
+        node["isFinal"] = req.get("isFinal", node["isFinal"])
+
+        print(node)
+
+        Nodes_DB(node).save()
+
+        return node, 200
     # End POST method
 
     # Start DELETE method
