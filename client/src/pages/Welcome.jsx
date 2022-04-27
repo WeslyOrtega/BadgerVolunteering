@@ -48,7 +48,7 @@ function Welcome() {
             <p className="font-Poppins text-sm px-10 mb-7 md:mb-5 md:px-24 md:text-xl">
               Matching you to volunteer work that fits your personality.
             </p>
-            <h1 className="pl-32 pr-32">
+            <h1 className="md:pl-32 md:pr-32 pl-5 pr-5">
               Focus on answering the next few questions in terms of what types
               of activities be enjoyable to you. If you are uncertain, choose
               the option which is the closest.
