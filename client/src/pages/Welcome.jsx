@@ -13,7 +13,7 @@ function Welcome() {
   // If API retrieves data successfully we navigate to home page
   useEffect(() => {
     if (isSuccess && user_id) {
-      navigate("/v2");
+      navigate("/home");
     }
   }, [isSuccess]);
 
@@ -39,9 +39,9 @@ function Welcome() {
 
   return (
     <div className="flex justify-center items-center h-screen md:container md:mx-auto">
-      <div className="w-full bg-slate-200 h-3/4 rounded-xl shadow-xl">
+      <div className="w-full bg-[#D5F9F1] h-3/4 rounded-xl shadow-xl">
         <div className="flex flex-col items-center justify-center h-full w-full">
-          <div className="text-center text-teal-700  ">
+          <div className="text-center text-teal-900  ">
             <h1 className="font-PlayfairDisplay text-5xl mb-10 md:text-6xl">
               WELCOME TO BADGER
             </h1>
