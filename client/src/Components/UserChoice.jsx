@@ -1,6 +1,7 @@
 import React from "react";
+import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 
-function UserChoice({ data, onClick, position, address}) {
+function UserChoice({ data, onClick, position, address }) {
   const { text, alt, img } = data;
   return (
     <div className="h-full bg-teal-800 ">
@@ -12,17 +13,8 @@ function UserChoice({ data, onClick, position, address}) {
         <button
           onClick={() => onClick(address)}
           className={`h-full w-full active:${position}translate-x-1`}
-        > 
+        >
           <div className="text-5xl font-PlayfairDisplay text-center text-slate-700 ">
-            {/* <img
-              src={img}
-              alt={alt}
-              className="absolute inset-0 w-full h-full object-cover shadow-lg rounded-md"
-            ></img> */}
-
-            {/* <div className="flex flex-row justify-center items-center p-4 w-full bg-teal-800 opacity-60   ">
-              {text}
-            </div> */}
             <div className="flex flex-row justify-center items-center  z-30 text-teal-100  p-4 w-full ">
               {text}
             </div>
@@ -34,4 +26,3 @@ function UserChoice({ data, onClick, position, address}) {
 }
 
 export default UserChoice;
-//` m-2 p-2 translate-y-2 translate-x-3 rounded-lg drop-shadow-md`

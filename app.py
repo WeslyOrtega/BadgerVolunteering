@@ -25,7 +25,8 @@ def review():
     if req:
         agreement = req.get('agree')
         if agreement is not None:
-            logger.log_user_review(token, agreement)
+            pass
+            #logger.log_user_review(token, agreement)
 
         else:
             return {"err": "Missing data"}, 400
@@ -49,7 +50,7 @@ def choice():
     if not node:
         return {"err": "Node not found"}, 404
 
-    logger.log_user_choice(token, node_id, node['isFinal'])
+    #logger.log_user_choice(token, node_id, node['isFinal'])
 
     if node['isFinal']:
         return {"final": node["final"], "isFinal": True}, 200
