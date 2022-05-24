@@ -98,14 +98,14 @@ function Home() {
               <button
                 disabled={isDisabled}
                 className="opacity-50"
-                onClick={() => onClick(option1_destination)}
+                onClick={() => onClick(option2_destination)}
               >
                 <FaTimesCircle className="text-8xl text-[#8CD4C4] " />
               </button>
               <button
                 disabled={isDisabled}
                 className="opacity-50"
-                onClick={() => onClick(option2_destination)}
+                onClick={() => onClick(option1_destination)}
               >
                 <FaCheckCircle className="text-8xl text-[#F2BC41]" />
                 {console.log(`opacity-[${numData + 50}%]`)}
@@ -115,14 +115,14 @@ function Home() {
             <>
               <button
                 className={numData === 25 ? "opacity-90 focus:translate-y-1" : "opacity-100 focus:translate-y-1"}
-                onClick={() => onClick(option1_destination)}
+                onClick={() => onClick(option2_destination)}
               >
                 <FaTimesCircle className="text-8xl text-[#8CD4C4] " />
               </button>
               <button
                 disabled={isDisabled}
                 className={numData === 25 ? "opacity-40" : "opacity-30"}
-                onClick={() => onClick(option2_destination)}
+                onClick={() => onClick(option1_destination)}
               >
                 <FaCheckCircle className="text-8xl text-[#F2BC41]" />
               </button>
@@ -132,14 +132,14 @@ function Home() {
               <button
                 disabled={isDisabled}
                 className={numData === 75 ? "opacity-40" : "opacity-30"}
-                onClick={() => onClick(option1_destination)}
+                onClick={() => onClick(option2_destination)}
               >
                 <FaTimesCircle className="text-8xl text-[#8CD4C4] " />
               </button>
 
               <button
                 className={numData === 75 ? "opacity-90 focus:translate-y-1" : "opacity-100 focus:translate-y-1"}
-                onClick={() => onClick(option2_destination)}
+                onClick={() => onClick(option1_destination)}
                 
               >
                 <FaCheckCircle className="text-8xl text-[#F2BC41]" />
