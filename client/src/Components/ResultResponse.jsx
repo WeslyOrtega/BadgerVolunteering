@@ -32,12 +32,12 @@ function ResultResponse({ text, details }) {
       </h1>
 
       <div className="flex justify-center items-center p-5 ">
-        <div className="flex flex-row w-full pt-3  items-center justify-between ">
+        <div className="flex flex-row w-3/4 pt-3  items-center justify-between  ">
           <button className='focus:translate-y-1' onClick={() => onClick(false)}>
-            <FaTimesCircle className="text-8xl text-[#8CD4C4]" />
+            <FaTimesCircle className="text-7xl text-[#8CD4C4]" />
           </button>
           <button className='focus:translate-y-1' onClick={() => onClick(true)}>
-            <FaCheckCircle className="text-8xl text-[#F2BC41]" />
+            <FaCheckCircle className="text-7xl text-[#F2BC41]" />
           </button>
         </div>
       </div>
