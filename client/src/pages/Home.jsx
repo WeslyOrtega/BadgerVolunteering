@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getData } from "../features/data/dataSlice";
-import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
-import UserChoice from "../Components/UserChoice";
+import {
+  FaCheckCircle,
+  FaTimesCircle,
+  FaQuestionCircle,
+} from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import Spinner from "../Components/Spinner";
 import Slider from "../Components/Slider/Slider";
@@ -16,7 +19,7 @@ function Home() {
   const [response] = useState([
     ["not a fit", "no", "not me", "nope"],
     ["meh", "not really", "a little bit", "nah", "probably not"],
-    ["slide to choose"],
+    ["undecided"],
     ["sure", "i agree", "yes", "sounds fun", "why not?", "sounds good"],
     [
       "nailed it!",
@@ -81,7 +84,7 @@ function Home() {
           {name}
         </div>
       </div>
-      <div className="flex items-center justify-center absolute bottom-48 w-full p-5">
+      <div className="flex items-center justify-center absolute bottom-36 w-full p-5">
         <div className="flex flex-col items-center justify-center w-full">
           <h1 className="text-[#F2BC41] md:text-4xl text-4xl leading-relaxed  font-extrabold text-center p-2">
             {response[numData / 25][
@@ -91,59 +94,54 @@ function Home() {
           <Slider sendResponse={sendResponse} home={true} />
         </div>
       </div>
-      <div className="flex items-center justify-center absolute bottom-3 w-full p-5 ">
+      <div className="flex items-center justify-center absolute bottom-5 w-full p-5 ">
         <div className="flex flex-row md:w-1/4 w-5/6 items-center justify-between  ">
           {numData === 50 ? (
             <>
-              <button
-                disabled={isDisabled}
-                className="opacity-50"
-                onClick={() => onClick(option2_destination)}
-              >
-                <FaTimesCircle className="text-8xl text-[#8CD4C4] " />
-              </button>
-              <button
-                disabled={isDisabled}
-                className="opacity-50"
-                onClick={() => onClick(option1_destination)}
-              >
-                <FaCheckCircle className="text-8xl text-[#F2BC41]" />
-                {console.log(`opacity-[${numData + 50}%]`)}
-              </button>
+              <div className="flex flex-row w-full items-center justify-center pt-5">
+                <button
+                  className="opacity-90 flex items-center relative justify-center w-[330px] bg-[#F2BC41] md:w-2/3 rounded-xl text-[#D5F9F1] md:text-4xl text-2xl leading-loose  font-extrabold text-center md:pb-5 p-4 shadow-lg focus:translate-y-1"
+                  onClick={() => onClick(option1_destination)}
+                >
+                  " "
+                  <FaQuestionCircle className="absolute z-30 text-7xl text-[#F2BC41]" />
+                  <div className="absolute bg-[#D5F9F1] w-[50px] h-[50px]"></div>
+                </button>
+              </div>
             </>
           ) : numData < 50 ? (
             <>
-              <button
-                className={numData === 25 ? "opacity-90 focus:translate-y-1" : "opacity-100 focus:translate-y-1"}
-                onClick={() => onClick(option2_destination)}
-              >
-                <FaTimesCircle className="text-8xl text-[#8CD4C4] " />
-              </button>
-              <button
-                disabled={isDisabled}
-                className={numData === 25 ? "opacity-40" : "opacity-30"}
-                onClick={() => onClick(option1_destination)}
-              >
-                <FaCheckCircle className="text-8xl text-[#F2BC41]" />
-              </button>
+              <div className="flex flex-row w-full items-center justify-center pt-5">
+                <button
+                  className={
+                    numData === 25
+                      ? "opacity-90 flex items-center relative justify-center w-[330px] bg-[#8CD4C4] md:w-2/3 rounded-xl text-[#D5F9F1] md:text-4xl text-2xl leading-loose  font-extrabold text-center md:pb-5 p-4 shadow-lg focus:translate-y-1 "
+                      : "opacity-100 flex items-center relative justify-center w-[330px] bg-[#8CD4C4] md:w-2/3 rounded-xl text-[#D5F9F1] md:text-4xl text-2xl leading-loose  font-extrabold text-center md:pb-5 p-4 shadow-lg focus:translate-y-1 "
+                  }
+                  onClick={() => onClick(option2_destination)}
+                >
+                  " "
+                  <FaTimesCircle className="absolute z-30 text-7xl text-[#8CD4C4]" />
+                  <div className="absolute bg-[#D5F9F1] w-[50px] h-[50px]"></div>
+                </button>
+              </div>
             </>
           ) : (
             <>
-              <button
-                disabled={isDisabled}
-                className={numData === 75 ? "opacity-40" : "opacity-30"}
-                onClick={() => onClick(option2_destination)}
-              >
-                <FaTimesCircle className="text-8xl text-[#8CD4C4] " />
-              </button>
-
-              <button
-                className={numData === 75 ? "opacity-90 focus:translate-y-1" : "opacity-100 focus:translate-y-1"}
-                onClick={() => onClick(option1_destination)}
-                
-              >
-                <FaCheckCircle className="text-8xl text-[#F2BC41]" />
-              </button>
+              <div className="flex flex-row w-full items-center justify-center pt-5">
+                <button
+                  className={
+                    numData === 75
+                      ? "opacity-90 flex items-center relative justify-center w-[330px] bg-[#F2BC41] md:w-2/3 rounded-xl text-[#D5F9F1] md:text-4xl text-2xl leading-loose  font-extrabold text-center md:pb-5 p-4 shadow-lg focus:translate-y-1 "
+                      : "opacity-100 flex items-center relative justify-center w-[330px] bg-[#F2BC41] md:w-2/3 rounded-xl text-[#D5F9F1] md:text-4xl text-2xl leading-loose  font-extrabold text-center md:pb-5 p-4 shadow-lg focus:translate-y-1 "
+                  }
+                  onClick={() => onClick(option1_destination)}
+                >
+                  " "
+                  <FaCheckCircle className="absolute z-30 text-7xl text-[#F2BC41]" />
+                  <div className="absolute bg-[#D5F9F1] w-[50px] h-[50px]"></div>
+                </button>
+              </div>
             </>
           )}
         </div>
