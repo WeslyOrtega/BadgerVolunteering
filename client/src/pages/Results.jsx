@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "../assets/logo.png";
 import ResultItem from "../Components/ResultItem";
@@ -20,7 +19,7 @@ function Results() {
       </div>
 
       <div className="h-full md:h-5/6 md:p-2">
-        <div className="h-full rounded-xl shadow-lg p-3 flex relative justify-center items-end md:justify-end md:p-8">
+        <div className="h-full rounded-xl shadow-lg p-3 px-5 flex relative justify-center items-end md:justify-end md:p-8">
           <ResultItem />
         </div>
       </div>

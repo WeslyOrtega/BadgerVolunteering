@@ -39,8 +39,8 @@ function Welcome() {
 
   return (
     <div className="flex justify-center items-center h-screen md:container md:mx-auto">
-      <div className="w-full bg-[#D5F9F1] h-3/4 rounded-xl shadow-xl">
-        <div className="flex flex-col items-center justify-center h-full w-full">
+      <div className="  bg-[rgba(140,212,196,.75)] md:w-full w-[95%] md:h-3/4 h-[95%] rounded-xl shadow-xl">
+        <div className="flex flex-col items-center justify-center h-full w-full ">
           <div className="text-center text-teal-900  ">
             <h1 className="font-PlayfairDisplay text-5xl mb-10 md:text-6xl">
               WELCOME TO BADGER
