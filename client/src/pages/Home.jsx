@@ -1,11 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getData } from "../features/data/dataSlice";
-import {
-  FaCheckCircle,
-  FaTimesCircle,
-  FaQuestionCircle,
-} from "react-icons/fa";
+import { FaCheckCircle, FaTimesCircle, FaQuestionCircle } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import Spinner from "../Components/Spinner";
 import Slider from "../Components/Slider/Slider";
@@ -86,7 +82,7 @@ function Home() {
       </div>
       <div className="flex items-center justify-center absolute bottom-36 w-full p-5">
         <div className="flex flex-col items-center justify-center w-full">
-          <h1 className="text-[#F2BC41] md:text-4xl text-4xl leading-relaxed  font-extrabold text-center p-2">
+          <h1 className="text-[#F2BC41] md:text-3xl text-3xl leading-relaxed  font-extrabold text-center p-2">
             {response[numData / 25][
               getRandomInt(response[numData / 25].length)
             ].toUpperCase()}
