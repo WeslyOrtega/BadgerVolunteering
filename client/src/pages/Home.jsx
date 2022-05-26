@@ -76,7 +76,7 @@ function Home() {
         </span>
       </h1>
       <div className="flex flex-col pt-[25%] justify-start items-end px-4 md:px-0  md:w-1/2  h-full">
-        <div className="text-[#D5F9F1] md:text-4xl text-4xl leading-relaxed  font-extrabold text-center md:pb-5 pb-10 ">
+        <div className="text-[#D5F9F1] md:text-4xl text-4xl leading-normal  font-extrabold text-center md:pb-5 pb-10 ">
           {name}
         </div>
       </div>
@@ -90,7 +90,7 @@ function Home() {
           <Slider sendResponse={sendResponse} home={true} />
         </div>
       </div>
-      <div className="flex items-center justify-center absolute bottom-5 w-full p-5 ">
+      <div className="flex items-center justify-center absolute bottom-3 w-full p-5 ">
         <div className="flex flex-row md:w-1/4 w-5/6 items-center justify-between  ">
           {numData === 50 ? (
             <>
